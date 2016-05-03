@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<HTML lang="en" ng-app="movieLibrary">
+<HEAD>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width"> 
+    
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href='css/app.css' rel="stylesheet">
+</HEAD>
+<BODY>
+    <div class="app-container" ng-controller="HelloCtrl">
+        <div class="movies-header">
+        </div>
+        <div class="movies-container">
+            <ul>
+                <li class="movie-container" ng-repeat="movie in movies track by $index">
+                    <div class="movie-item">
+                        <img class="movie-image" ng-src="{{movie.posterImage}}" uib-tooltip="{{movie.shortDescription}}" tooltip-placement="bottom" tooltip-popup-delay='1500' alt="film image"/>
+                        <div class="movie-name">{{movie.name}}</div>
+                        <div class="movie-sub-info">
+                            <div class="movie-year">{{movie.year}}</div>
+                            <div class="movie-resolutions">
+                                <span ng-repeat="res in movie.supportedResolution track by $index">
+                                    {{res}}p
+                                </span> 
+                            </div> 
+                        </div>               
+                    </div>
+                </li>
+            </ul>
+        </div>
+    <div>
+        
+    <!--load scripts-->
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/movies/moviesCtrl.js"></script>
+</BODY>
+</HTML>
