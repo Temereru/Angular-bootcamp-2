@@ -13,13 +13,20 @@
 </HEAD>
 <BODY>
     <div class="app-container" ng-controller="HelloCtrl">
-        <div class="movies-header">
+         <div class="header-general">
+        </div>
+        <div class="movies-header-toolbar">
+            <div class="movies-edit-panel">
+                
+            </div>
         </div>
         <div class="movies-container">
             <ul>
-                <li class="movie-container" ng-repeat="movie in movies track by $index">
+                <li class="movie-container" ng-repeat="movie in movies track by movie.id">
                     <div class="movie-item">
-                        <img class="movie-image" ng-src="{{movie.posterImage}}" uib-tooltip="{{movie.shortDescription}}" tooltip-placement="bottom" tooltip-popup-delay='1500' alt="film image"/>
+                        <div class="movie-image-container">
+                            <img class="movie-image" ng-src="{{movie.posterImage}}" uib-tooltip="{{movie.shortDescription}}" tooltip-placement="bottom" tooltip-popup-delay='1500' alt="film image"/>
+                        </div>
                         <div class="movie-name">{{movie.name}}</div>
                         <div class="movie-sub-info">
                             <div class="movie-year">{{movie.year}}</div>
