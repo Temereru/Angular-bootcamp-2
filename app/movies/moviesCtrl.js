@@ -20,9 +20,18 @@ angular.module('movieLibrary').controller('HelloCtrl', ['$scope', function($scop
       year:2014,
       supportedResolution: [480, 720,1080],
       posterImage: "http://t2.gstatic.com/images?q=tbn:ANd9GcSB6Vsz4iWHiML-6wQmsN5pQoo9VBxE_vIvplPInW06hqeojGmk",
-      shortDescription: "A 2014 French-American action thriller film directed by McG and written by Luc Besson and Adi Hasak"   
+      shortDescription: "A 2014 French-American action thriller film directed by McG and written by Luc Besson and Adi Hasak"
     }
   ];
-  
+
   $scope.movies = movies;
+  $scope.editMode = false;
+
+  $scope.triggerDelMode = function (editMode) {
+    $scope.editMode = editMode;
+  }
+
+  $scope.delMovie = function (idx) {
+    $scope.movies.splice(idx, 1);
+  }
  }]);
