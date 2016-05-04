@@ -1,23 +1,31 @@
-<div class="movies-header-toolbar">
+<div class="movies-header-toolbar" ng-hide="loading">
   <div class="movies-edit-panel">
     <button class="glyphicon glyphicon-plus btn btn-default" uib-tooltip="this functionality will be available soon." tooltip-placement="bottom" tooltip-trigger="click"></button>
     <button class="glyphicon glyphicon-trash btn btn-default" ng-click="triggerDelMode(true)" ng-hide="editMode"></button>
     <button class="glyphicon glyphicon-ok btn btn-default" ng-click="triggerDelMode(false)" ng-show="editMode"></button>
+    <button class="glyphicon glyphicon-refresh btn btn-default" ng-click="refresh()"></button>
+  </div>
+  <div class="search-container input-group">
+    <input ng-model="filter.name" placeholder="type name to search" class="form-control"></input>
   </div>
 </div>
+
 <div class="movies-container">
   <ul>
-    <li class="movie-container" ng-repeat="movie in movies | filterByYear:filter.year track by movie.id">
+    <li class="movie-container" ng-repeat="movie in movies | filterByName:filter.name track by movie.id">
       <div class="movie-item">
         <div class="movie-image-container">
           <img class="movie-image" ng-src="{{movie.posterImage}}" uib-tooltip="{{movie.shortDescription}}" tooltip-placement="bottom" tooltip-popup-delay='1500' alt="film image"/>
-          <span class="glyphicon glyphicon-minus delete-icon" ng-show="editMode" ng-click="delMovie($index)"></span>
+          <span class="glyphicon glyphicon-minus delete-icon" ng-show="editMode" ng-click="delMovie($index, movie)"></span>
         </div>
       <div class="movie-name">{{movie.name | uppercase}}</div>
         <div class="movie-sub-info">
           <div class="movie-year">{{movie.year}}</div>
             <div class="movie-resolutions">
-              <span ng-repeat="res in movie.supportedResolution track by $index">{{res}}p</span>
+              <span ng-repeat="res in movie.supportedResolution track by $index" ng-switch="$first">
+                <span ng-switch-when="true">{{res}}p </span>
+                <span ng-switch-when="false">/ {{res}}p</span>
+              </span>
             </div>
           </div>
         </div>
@@ -25,3 +33,5 @@
     </ul>
   </div>
 <div>
+
+<img class="loading-img" src="http://sierrafire.cr.usgs.gov/images/loading.gif" ng-show="loading">

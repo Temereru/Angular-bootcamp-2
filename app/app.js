@@ -1,5 +1,5 @@
 "use strict"
-angular.module('movieLibrary',['ui.bootstrap', 'ui.router']);
+angular.module('movieLibrary',['ui.bootstrap', 'ui.router', 'ngMaterial']);
 
 angular.module('movieLibrary').config(function($stateProvider, $urlRouterProvider) {
   //

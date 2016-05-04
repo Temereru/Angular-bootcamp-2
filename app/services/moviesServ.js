@@ -1,4 +1,4 @@
-angular.module('movieLibrary').service('moviesServ', function() {
+angular.module('movieLibrary').service('moviesServ', function($q, $timeout) {
   
   var movies = [
     {
@@ -25,11 +25,19 @@ angular.module('movieLibrary').service('moviesServ', function() {
     }
   ];
   var getMovies = function(){
+    //console.log('1');
     return movies;
   };
 
+  var getMoviesWithTimeout = function(){
+    var deffered = $q.defer();
+    $timeout(function(){deffered.resolve(getMovies())}, 2000);
+    return deffered.promise;    
+  };
+
   return {
-    getMovies: getMovies
+    getMovies: getMovies,
+    getMoviesWithTimeout: getMoviesWithTimeout
   };
 
 });
