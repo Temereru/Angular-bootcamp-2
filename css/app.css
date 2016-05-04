@@ -88,6 +88,10 @@ body{
     margin-left: 60px;
 }
 
+.view-container {
+    margin-top: 50px;
+}
+
 /*.remove {
   position: absolute;
   top: 0;

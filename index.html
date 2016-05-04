@@ -14,41 +14,27 @@
 <BODY>
     <div class="app-container" ng-controller="HelloCtrl">
          <div class="header-general">
-        </div>
-        <div class="movies-header-toolbar">
-            <div class="movies-edit-panel">
-              <button class="glyphicon glyphicon-plus" uib-tooltip="this functionality will be available soon." tooltip-placement="bottom" tooltip-trigger="click"></button>
-              <button class="glyphicon glyphicon-trash" ng-click="triggerDelMode(true)" ng-hide="editMode"></button>
-              <button class="glyphicon glyphicon-ok" ng-click="triggerDelMode(false)" ng-show="editMode"></button>
-            </div>
-        </div>
-        <div class="movies-container">
-            <ul>
-                <li class="movie-container" ng-repeat="movie in movies track by movie.id">
-                      <div class="movie-item">
-                        <div class="movie-image-container">
-                            <img class="movie-image" ng-src="{{movie.posterImage}}" uib-tooltip="{{movie.shortDescription}}" tooltip-placement="bottom" tooltip-popup-delay='1500' alt="film image"/>
-                            <span class="glyphicon glyphicon-minus delete-icon" ng-show="editMode" ng-click="delMovie($index)"></span>
-                        </div>
-                        <div class="movie-name">{{movie.name | uppercase}}</div>
-                        <div class="movie-sub-info">
-                            <div class="movie-year">{{movie.year}}</div>
-                            <div class="movie-resolutions">
-                                <span ng-repeat="res in movie.supportedResolution track by $index">
-                                    {{res}}p
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+            <ul class="nav navbar-nav nav-pills">
+              <li>
+                <a ui-sref="Movies">Movies</a>
+              </li>
+              <li>
+                <a ui-sref="TV">TV series</a>
+              </li>
             </ul>
+          </nav>
         </div>
-    <div>
+        <div ui-view class="view-container"></div>
+      
 
     <!--load scripts-->
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/services/moviesServ.js"></script>
     <script type="text/javascript" src="app/movies/moviesCtrl.js"></script>
+    <script type="text/javascript" src="filters/filterByYear.js"></script>
 </BODY>
 </HTML>
